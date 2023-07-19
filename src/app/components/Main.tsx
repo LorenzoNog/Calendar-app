@@ -45,34 +45,37 @@ const Calendar = () => {
   }
 
   return (
-    <>
-    <h1 className="p-3 font-extrabold text-5xl">🗓️ Calendar</h1>
-      <div className="flex gap-5 mt-[2%] ml-5">
-        <span className="text-4xl font-extrabold text-black">
-          {date.toLocaleString("es-AR", { month: "long", year: "numeric" })}
-        </span>
+    <div>
+      <div className="absolute z-[-1] left-[-28%] top-0 w-[30%] h-[50%] rounded-full pink_gradient" />
+      <h1 className="p-3 font-extrabold text-center text-5xl text-transparent bg-clip-text bg-gradient-to-b from-slate-400 to-gray-200 uppercase">
+        {date.toLocaleString("es-AR", { month: "short", year: "numeric" })}
+      </h1>
+      <div className="flex justify-center text-gray-400 gap-5 mt-[1%] ml-5">
         <button
           onClick={() => handleMonthChange(-1)}
           className="text-3xl font-extrabold px-3 rounded-md"
         >
-          {'<'}
+          {"<"}
         </button>
         <button
           onClick={() => handleMonthChange(1)}
           className="text-3xl font-extrabold px-3 rounded-md"
         >
-          {'>'}
+          {">"}
         </button>
       </div>
       <main className="m-5">
         <div className="grid grid-cols-7 gap-3">
-          {Array.from({length:7},(_,i)=>(
-            <span key={i} className="text-center uppercase font-extrabold border-t-2 border-b-2">
-              { new Date(
+          {Array.from({ length: 7 }, (_, i) => (
+            <span
+              key={i}
+              className="text-center uppercase font-extrabold border-t-2 border-b-2"
+            >
+              {new Date(
                 date.getFullYear(),
                 date.getMonth(),
                 i + 1
-              ).toLocaleString("es-AR",{weekday:"long"})}
+              ).toLocaleString("es-AR", { weekday: "long" })}
             </span>
           ))}
           {Array.from(
@@ -95,7 +98,7 @@ const Calendar = () => {
                   <div className="font-extrabold flex flex-col p-[0.5rem] m-[0.5rem]">
                     <span className="text-start">{i + 1}</span>
                     {events && (
-                      <div className="flex flex-col underline">
+                      <div className="flex flex-col">
                         {Array.from(events.values()).map((event) => (
                           <li
                             key={event.id}
@@ -103,9 +106,11 @@ const Calendar = () => {
                               e.stopPropagation();
                               handleDeleteEvent(key, event.id);
                             }}
-                            className="font-bold italic cursor-pointer"
+                            className="cursor-pointer list-none"
                           >
-                            {event.title}
+                            <span className="font-medium ">
+                              ✓ {event.title}
+                            </span>
                           </li>
                         ))}
                       </div>
@@ -117,7 +122,7 @@ const Calendar = () => {
           )}
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

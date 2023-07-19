@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.pink_gradient {
+  background: radial-gradient(circle, #f4c4f3 50%, #fc67fa 100%);
+  filter: blur(1000px);
+}
+.blue_gradient {
+  background: radial-gradient(circle, rgba(188, 165, 255, 0) 0%, #214d76 100%);
+  filter: blur(1000px);
+}
